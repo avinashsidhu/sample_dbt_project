@@ -61,6 +61,11 @@ jobs:
           dagster_cloud_yaml_path: ${{ env.DAGSTER_CLOUD_FILE }}
 
       - name: Prepare DBT project for deployment
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ vars.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ vars.SNOWFLAKE_USER }}
+          SNOWFLAKE_ROLE: ${{ vars.SNOWFLAKE_ROLE }}
+          RSA_PRIVATE_KEY: ${{ vars.RSA_PRIVATE_KEY }}
         if: steps.prerun.outputs.result == 'pex-deploy'
         # --upgrade-strategy eager picks up newer packages that are required for things to work
         run: |
@@ -70,6 +75,8 @@ jobs:
           dagster-dbt project prepare-and-package --file ${{ env.DAGSTER_PROJECT_NAME }}/project.py
           # The cli command below can be used to manage syncing the prod manifest to branches if state_path is set on the DbtProject
           # dagster-cloud ci dagster-dbt project manage-state --file ${{ env.DAGSTER_PROJECT_NAME }}/project.py
+          echo $SNOWFLAKE_ACCOUNT
+          echo $GITHUB_ENV
         shell: bash
 
       - name: Python Executable Deploy
