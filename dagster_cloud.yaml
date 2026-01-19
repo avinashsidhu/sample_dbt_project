@@ -1,0 +1,6 @@
+locations:
+- build:
+    directory: ./sample_dbt_project
+  code_source:
+    module_name: sample_dbt_project.definitions
+  location_name: sample_dbt_project
