@@ -1,13 +1,8 @@
 config-version: 2
 
-name: "jaffle_shop"
-version: "3.0.0"
-require-dbt-version: ">=1.5.0"
+name: "sample_dbt_project"
 
-dbt-cloud:
-  project-id: 275557 # Put your project id here
-
-profile: default # Put your profile here
+profile: "sample_dbt_project"
 
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -25,13 +20,13 @@ vars:
   "dbt_date:time_zone": "America/Los_Angeles"
 
 seeds:
-  jaffle_shop:
+  sample_dbt_project:
     +schema: raw
     jaffle-data:
       +enabled: "{{ var('load_source_data', false) }}"
 
 models:
-  jaffle_shop:
+  sample_dbt_project:
     staging:
       +materialized: view
     marts:
