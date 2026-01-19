@@ -75,8 +75,6 @@ jobs:
           dagster-dbt project prepare-and-package --file ${{ env.DAGSTER_PROJECT_NAME }}/project.py
           # The cli command below can be used to manage syncing the prod manifest to branches if state_path is set on the DbtProject
           # dagster-cloud ci dagster-dbt project manage-state --file ${{ env.DAGSTER_PROJECT_NAME }}/project.py
-          echo $SNOWFLAKE_ACCOUNT
-          echo $GITHUB_ENV
         shell: bash
 
       - name: Python Executable Deploy

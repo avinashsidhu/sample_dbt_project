@@ -61,6 +61,11 @@ jobs:
           deployment: 'prod'
 
       - name: Prepare DBT project for deployment
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ vars.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ vars.SNOWFLAKE_USER }}
+          SNOWFLAKE_ROLE: ${{ vars.SNOWFLAKE_ROLE }}
+          RSA_PRIVATE_KEY: ${{ vars.RSA_PRIVATE_KEY }}
         if: steps.prerun.outputs.result == 'pex-deploy'
         # --upgrade-strategy eager picks up newer packages that are required for things to work
         run: |
