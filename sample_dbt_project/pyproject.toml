@@ -25,3 +25,11 @@ build-backend = "setuptools.build_meta"
 module_name = "sample_dbt_project.definitions"
 code_location_name = "sample_dbt_project"
 
+[tool.dg]
+directory_type = "project"
+
+[tool.dg.project]
+root_module = "sample_dbt_project"
+registry_modules = [
+    "sample_dbt_project.components.*",
+]
